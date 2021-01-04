@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_150431) do
+ActiveRecord::Schema.define(version: 2020_12_17_030615) do
 
   create_table "account_contacts", force: :cascade do |t|
     t.integer "account_id"
@@ -244,6 +244,19 @@ ActiveRecord::Schema.define(version: 2020_11_03_150431) do
   create_table "imported_files", force: :cascade do |t|
     t.string "filename", limit: 64, default: "", null: false
     t.string "md5sum", limit: 32, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "importers", force: :cascade do |t|
+    t.integer "attachment_file_size"
+    t.string "attachment_file_name", null: false
+    t.string "attachment_content_type"
+    t.string "entity_type", null: false
+    t.string "entity_id"
+    t.string "status", default: "new", null: false
+    t.text "map"
+    t.text "messages"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
